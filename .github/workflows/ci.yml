@@ -15,4 +15,4 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     - name: Test with unittest
-      run: xvfb-run --server-args "-screen 0 1920x1080x24" python .
+      run: xvfb-run --server-args "-screen 0 1920x1080x24" python -m unittest discover -s tests
