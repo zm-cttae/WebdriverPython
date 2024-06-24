@@ -6,6 +6,7 @@ from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support.expected_conditions import visibility_of
 
+from testdata.navigation_drawer_data import NavigationDrawerData
 from componentobjects.navigation_drawer import HealthterNavigationDrawerComponent
 
 class HealthterNavigationDrawerTest(unittest.TestCase):
@@ -17,12 +18,12 @@ class HealthterNavigationDrawerTest(unittest.TestCase):
         service = ChromeService(executable_path=ChromeDriverManager().install())
         driver = cls.driver = webdriver.Chrome(options=options,service=service)
         cls.wait = WebDriverWait(driver, 5)
-        driver.get("https://healthter.org/")
+        driver.get(NavigationDrawerData.homepage_url)
         driver.maximize_window()
         driver.implicitly_wait(1)
 
     def setUp(self):
-        self.driver.get("https://healthter.org/")
+        self.driver.get(NavigationDrawerData.homepage_url)
 
     def test_navigation_drawer_open(self):
         driver = self.driver
@@ -49,7 +50,7 @@ class HealthterNavigationDrawerTest(unittest.TestCase):
         wait.until(visibility_of(anchor_cancer))
         anchor_cancer.click()
 
-        self.assertEqual(driver.current_url, "https://healthter.org/qeybta/caafimaad-guud/kansar/")
+        self.assertEqual(driver.current_url, NavigationDrawerData.cancer_url)
 
     def test_navigation_drawer_close(self):
         driver = self.driver

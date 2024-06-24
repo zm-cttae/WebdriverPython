@@ -8,6 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver import ActionChains
 from selenium.webdriver.support.expected_conditions import visibility_of
 
+from testdata.language_selector_data import LanguageSelectorData
 from componentobjects.language_selector import HealthterLanguageSelectorComponent
 
 class HealthterLanguageSelectorTest(unittest.TestCase):
@@ -25,16 +26,16 @@ class HealthterLanguageSelectorTest(unittest.TestCase):
         driver.implicitly_wait(1)
 
     def setUp(self):
-        self.driver.get("https://healthter.org/")
+        self.driver.get(LanguageSelectorData.homepage_url)
 
     def test_default_title_somali(self):
         driver = self.driver
-        self.assertEqual(driver.title, "Healthter – Macluumaad Iyo Talooyin Caafimaad.")
+        self.assertEqual(driver.title, LanguageSelectorData.title)
 
     def test_gt_default_language_somali(self):
         driver = self.driver
         language_code = HealthterLanguageSelectorComponent.language_flag(driver)
-        self.assertEqual(language_code.get_attribute("alt"), "SO")
+        self.assertEqual(language_code.get_attribute("alt"), LanguageSelectorData.language_code_so)
     
     def test_gt_language_selector_menu(self):
         driver = self.driver
@@ -79,13 +80,13 @@ class HealthterLanguageSelectorTest(unittest.TestCase):
 
         footer_about_heading = HealthterLanguageSelectorComponent.footer_about_heading(driver)
         self.util_scroll_to_translated_element(footer_about_heading)
-        self.assertEqual(footer_about_heading.text, "أكثر صحة")
+        self.assertEqual(footer_about_heading.text, LanguageSelectorData.about_heading_text_ar)
 
-        driver.get("https://healthter.org/qeybta/caafimaad-guud/")
+        driver.get(LanguageSelectorData.general_health_url)
         
         footer_about_heading = HealthterLanguageSelectorComponent.footer_about_heading(driver)
         self.util_scroll_to_translated_element(footer_about_heading)
-        self.assertEqual(footer_about_heading.text, "أكثر صحة")
+        self.assertEqual(footer_about_heading.text, LanguageSelectorData.about_heading_text_ar)
 
         self.util_toggle_gt_language_menu(True)
 
@@ -95,7 +96,7 @@ class HealthterLanguageSelectorTest(unittest.TestCase):
         self.util_toggle_gt_language_menu(False)
 
         self.util_scroll_to_translated_element(footer_about_heading)
-        self.assertEqual(footer_about_heading.text, "Healthter")
+        self.assertEqual(footer_about_heading.text, LanguageSelectorData.about_heading_text_so)
 
     def util_scroll_to_translated_element(self, element):
         driver = self.driver
