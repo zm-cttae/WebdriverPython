@@ -33,8 +33,8 @@ class HealthterLanguageSelectorTest(unittest.TestCase):
 
     def test_gt_default_language_somali(self):
         driver = self.driver
-        language_code = HealthterLanguageSelectorComponent.language_code(driver)
-        self.assertEqual(language_code.text, "SO")
+        language_code = HealthterLanguageSelectorComponent.language_flag(driver)
+        self.assertEqual(language_code.get_attribute("alt"), "SO")
     
     def test_gt_language_selector_menu(self):
         driver = self.driver

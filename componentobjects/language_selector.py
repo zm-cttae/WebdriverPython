@@ -3,8 +3,8 @@ from selenium.webdriver.common.by import By
 
 class HealthterLanguageSelectorComponent:
     @staticmethod
-    def language_code(driver: WebDriver):
-        return driver.find_element(by=By.CSS_SELECTOR, value=".gt-lang-code")
+    def language_flag(driver: WebDriver):
+        return driver.find_element(by=By.CSS_SELECTOR, value=".gt-current-lang img")
 
     @staticmethod
     def language_options(driver: WebDriver):
