@@ -30,7 +30,7 @@ class HealthterLanguageSelectorTest(unittest.TestCase):
 
     def test_default_title_somali(self):
         driver = self.driver
-        self.assertEqual(driver.title, LanguageSelectorData.title)
+        self.assertEqual(driver.title, LanguageSelectorData.homepage_title)
 
     def test_gt_default_language_somali(self):
         driver = self.driver
